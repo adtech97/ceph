@@ -2229,6 +2229,8 @@ def _setup_vector_bucket_with_index(conn, bucket_name, index_name, dimension=4):
         {'key':'v0', 'data':generate_data(dimension, 0)},
         {'key':'v1', 'data':generate_data(dimension, 1)}
     ]
+    result = conn.put_vectors(vectorBucketName=bucket_name, indexName=index_name, vectors=vectors)
+    assert result['ResponseMetadata']['HTTPStatusCode'] == 200
 
 @pytest.mark.vector_test
 def test_vector_bucket_policy_baseline():
